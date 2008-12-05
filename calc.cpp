@@ -1,5 +1,5 @@
 #include <iostream>
-#include <iomanip.h>
+#include <iomanip>
 #include <string.h>
 #include <vector>
 #include <deque>
@@ -58,7 +58,7 @@ public:
 	    if( isdigit(s[1]) ) {
 		code = load;
 		number.set(s+1);
-		number *= -1;
+		number.chs();
 	    } else
 		code = sub;
 	}
@@ -126,6 +126,8 @@ const char* pname = "rpn";
 
 int main(int argc,char** argv)
 {
+    using std::cerr;
+    using std::endl;
     pname = *argv++;
     string_t	work_name = "initialization";
     code_t  code;
@@ -155,6 +157,8 @@ int main(int argc,char** argv)
 
 void instruction::exec(stack_t&   stack,number_map_t& map) const
 {
+    using std::cout;
+    using std::endl;
     switch( code ) {
     case dup:
 	test_stack(stack);

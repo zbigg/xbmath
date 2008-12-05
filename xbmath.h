@@ -103,8 +103,8 @@ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdio.h>
 #include <string.h>
 
-#include <iostream.h>
-#include <iomanip.h>
+#include <iostream>
+#include <iomanip>
 #include <string>
 
 #define XBM_NEED_NAMESPACE
@@ -813,6 +813,7 @@ public:	inline integer& operator  = (signed_atom i) { return set(i); }
 	inline integer& operator  = (const natural& i) { return set(i); }
 	inline integer& operator  = (const integer& i) { return set(i); }
 
+        inline integer& operator *= (int i) { return mul(integer(i)); }
 	inline integer& operator += (int i) { return add(i); }
 	inline integer& operator -= (int i) { return sub(i); }
 
@@ -1073,16 +1074,10 @@ public:
 
     }; // xbmath:: rational
 
-#ifdef XBM_NEED_NAMESPACE
-} // namespace xbmath
-#else
-}; // class xbmath
-#endif
-
 #ifndef XBM_NO_IOSTREAM
-inline ostream& operator << (ostream& s, const xbmath::natural& n)
+inline std::ostream& operator << (std::ostream& s, const xbmath::natural& n)
 {
-    if( s.flags() & ios::hex ) {
+    if( s.flags() & std::ios::hex ) {
 	int max = n.str_hex_length()+1;
 	char* buf = new char[max+1];
 	memset(buf,0,max+1);
@@ -1100,14 +1095,14 @@ inline ostream& operator << (ostream& s, const xbmath::natural& n)
     return s;
 }
 
-inline ostream& operator << (ostream& s, const xbmath::integer& i)
+inline std::ostream& operator << (std::ostream& s, const integer& i)
 {
     if( ! i.sign )
 	s << '-';
-    return s << (const xbmath::natural)i;
+    return s << (const natural)i;
 }
 
-inline ostream& operator << (ostream& s, const xbmath::rational& r)
+inline std::ostream& operator << (std::ostream& s, const rational& r)
 {
     char* buf = r.str_dec(NULL,0,s.precision());
     s << buf;
@@ -1115,6 +1110,14 @@ inline ostream& operator << (ostream& s, const xbmath::rational& r)
     return s;
 }
 #endif // XBM_NO_IOSTREAM
+    
+#ifdef XBM_NEED_NAMESPACE
+} // namespace xbmath
+#else
+}; // class xbmath
+#endif
+
+
 
 #endif // __cplusplus
 
