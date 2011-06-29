@@ -1,10 +1,10 @@
-prog:	calc.o xbmath.o
-	g++ calc.o xbmath.o -o calc
+LINK_AND_COMPILER_FLAGS=-g 
+CXXFLAGS=$(LINK_AND_COMPILER_FLAGS) -Wall -O3
+LDFLAGS=$(LINK_AND_COMPILER_FLAGS)
+CC=g++
+
+calc:	calc.o xbmath.o
     
 
-
-calc.o: calc.cpp
-	g++ -c calc.cpp -o calc.o
-
-xbmath.o: xbmath.cpp
-	g++ -c xbmath.cpp -o xbmath.o
+clean:
+	rm -rf *.o calc

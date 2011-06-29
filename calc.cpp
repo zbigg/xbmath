@@ -11,8 +11,8 @@
 
 
 class	instruction;
-//typedef xbmath::integer 	    number_t;
-typedef xbmath::rational 	    number_t;
+typedef xbmath::integer 	    number_t;
+//typedef xbmath::rational 	    number_t;
 
 typedef std::stack<number_t> stack_t;
 typedef std::string		    string_t;
@@ -272,7 +272,7 @@ void instruction::exec(stack_t&   stack,number_map_t& map) const
     case factorial:
 	{
 	    test_stack(stack);
-//	    stack.top().factorial( stack.top() );
+	    stack.top().factorial( stack.top() );
 	}
 	break;
     default:
