@@ -237,7 +237,7 @@ void instruction::exec(stack_t&   stack,number_map_t& map) const
 	    if( b.is_zero() )
 		throw "division by zero";
 
-	    // a.mod(b);
+	    a.mod(b);
 	    stack.push( a );
 	}
 	break;
@@ -247,7 +247,7 @@ void instruction::exec(stack_t&   stack,number_map_t& map) const
 	    number_t b	= stack.top();	 stack.pop();
 	    test_stack(stack);
 	    number_t a	= stack.top();	 stack.pop();
-//	    a.pow( b );
+	    a.pow( b );
 	    stack.push( a );
 	}
 	break;
