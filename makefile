@@ -4,7 +4,7 @@ LDFLAGS=$(LINK_AND_COMPILER_FLAGS)
 CC=g++
 
 calc:	calc.o xbmath.o
-    
+	$(CXX) -o $@ $^ $(LDFLAGS) $(LDLIBS)    
 
 clean:
 	rm -rf *.o calc

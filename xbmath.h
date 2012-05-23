@@ -454,7 +454,7 @@ public:
 
 	const char* info() {
 	    static char buf[200];
-	    sprintf(buf,"big natural info: %i",p.size());
+	    sprintf(buf,"big natural info: %i",(int)p.size());
 	    return buf;
 	}
 	natural(const char* s){
