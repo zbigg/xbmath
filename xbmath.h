@@ -149,21 +149,21 @@ public:
     typedef signed long 	signed_atom;
 #endif
 /* Format specifier for output atom. */
-#define XBM_ATOM_FMT_DEC    "%"_XBM_ATOM_FMT_DEC_
-#define XBM_ATOM_FMT_HEX    "%"_XBM_ATOM_FMT_HEX_
+#define XBM_ATOM_FMT_DEC    "%" _XBM_ATOM_FMT_DEC_
+#define XBM_ATOM_FMT_HEX    "%" _XBM_ATOM_FMT_HEX_
 
 /* Format specifier for padded output atom. */
 #if	_XBM_ATOM_LEN == 16
-#define XBM_ATOM_FMT_DEC_PAD	"%04"_XBM_ATOM_FMT_DEC_
-#define XBM_ATOM_FMT_HEX_PAD	"%04"_XBM_ATOM_FMT_HEX_
+#define XBM_ATOM_FMT_DEC_PAD	"%04" _XBM_ATOM_FMT_DEC_
+#define XBM_ATOM_FMT_HEX_PAD	"%04" _XBM_ATOM_FMT_HEX_
 
 #elif	_XBM_ATOM_LEN == 32
-#define XBM_ATOM_FMT_DEC_PAD	"%09"_XBM_ATOM_FMT_DEC_
-#define XBM_ATOM_FMT_HEX_PAD	"%08"_XBM_ATOM_FMT_HEX_
+#define XBM_ATOM_FMT_DEC_PAD	"%09" _XBM_ATOM_FMT_DEC_
+#define XBM_ATOM_FMT_HEX_PAD	"%08" _XBM_ATOM_FMT_HEX_
 
 #elif	_XBM_ATOM_LEN == 64
-#define XBM_ATOM_FMT_DEC_PAD	"%018"_XBM_ATOM_FMT_DEC_
-#define XBM_ATOM_FMT_HEX_PAD	"%016"_XBM_ATOM_FMT_HEX_
+#define XBM_ATOM_FMT_DEC_PAD	"%018" _XBM_ATOM_FMT_DEC_
+#define XBM_ATOM_FMT_HEX_PAD	"%016" _XBM_ATOM_FMT_HEX_
 
 #endif
 
@@ -850,6 +850,7 @@ public:	inline integer& operator  = (signed_atom i) { return set(i); }
 public:
 	integer p,q;
 	rational( double f = 0 ) : p(1), q(1) { set(f); };
+	rational( int _p, int _q = 1) : p(_p),q(_q) { }
 	rational( signed_atom _p, signed_atom _q = 1) : p(_p),q(_q) { }
 	rational( const integer& _p,const integer& _q) : p(_p),q(_q) { }
 	rational( const integer& _p) : p(_p), q(1) { }
@@ -1104,7 +1105,7 @@ inline std::ostream& operator << (std::ostream& s, const integer& i)
 
 inline std::ostream& operator << (std::ostream& s, const rational& r)
 {
-    char* buf = r.str_dec(NULL,0,s.precision());
+    char* buf = r.str_dec(NULL, 0 ,s.precision());
     s << buf;
     delete [] buf;
     return s;
